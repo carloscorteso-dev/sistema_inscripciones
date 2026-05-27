@@ -1,0 +1,82 @@
+Table ajustes {
+id int [pk, increment]
+nombre varchar(255)
+valor varchar(255)
+created_at timestamp
+updated_at timestamp
+}
+table users {
+id int [pk, increment]
+name varchar(255)
+email varchar(255) [unique]
+password varchar(255)
+created_at timestamp
+updated_at timestamp
+}
+
+Table carreras {
+id int [pk, increment]
+nombre varchar(255)
+created_at timestamp
+updated_at timestamp
+}
+
+Table genaracions {
+id int [pk, increment]
+carrera_id int [ref: > carreras.id]
+nombre varchar(255)
+created_at timestamp
+updated_at timestamp
+}
+
+Table ciclos {
+id int [pk, increment]
+ciclo_letra varchar(255)
+ciclo_numero int
+genaracion_id int [ref: > genaracions.id]
+created_at timestamp
+updated_at timestamp
+}
+
+Table alumnos{
+id int [pk, increment]
+carrera_id int [ref: > carreras.id]
+folio_alumno varchar(255)
+CURP varchar(255) unique
+nombre varchar(255)
+ap_paterno varchar(255)
+ap_materno varchar(255)
+foto varchar(255)
+calle varchar(255)
+numero varchar(255)
+colonia varchar(255)
+municipio varchar(255)
+entidad_federativa varchar(255)
+codigo_postal varchar(255)
+celular varchar(255)
+correo_electronico varchar(255)
+//datos del contacoto de emergencia
+nombre_contacto varchar(255)
+parentesco_contacto varchar(255)
+calle_contacto varchar(255)
+numero_contacto varchar(255)
+colonia_contacto varchar(255)
+municipio_contacto varchar(255)
+entidad_federativa_contacto varchar(255)
+codigo_postal_contacto varchar(255)
+celular_contacto varchar(255)
+correo_electronico_contacto varchar(255)
+
+created_at timestamp
+updated_at timestamp
+}
+
+Table inscripciones {
+id int [pk, increment]
+folio_inscripcion varchar(255)
+alumno_id int [ref: > alumnos.id]
+ciclo_id int [ref: > ciclos.id]
+estatus enum('Inscrito', 'Reinscrito',default: 'Pendiente')
+created_at timestamp  
+updated_at timestamp
+}
